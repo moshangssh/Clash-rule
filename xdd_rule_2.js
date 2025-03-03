@@ -1,0 +1,268 @@
+function main(config) {
+  config["proxy-groups"] = [
+    {
+      "include-all": true,
+      "exclude-filter": "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置",
+      name: "PROXY",
+      type: "select",
+      proxies: ["AUTO", "HK AUTO", "SG AUTO", "JP AUTO", "US AUTO"],
+    },
+    {
+      "include-all": true,
+      "exclude-filter": "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置",
+      name: "AUTO",
+      type: "url-test",
+      interval: 300,
+    },
+    {
+      name: "AIGC",
+      type: "select",
+      proxies: ["SG AUTO", "JP AUTO", "US AUTO"],
+    },
+    {
+      name: "Telegram",
+      type: "select",
+      proxies: ["HK AUTO", "SG AUTO", "JP AUTO", "US AUTO"],
+    },
+    {
+      name: "Google",
+      type: "select",
+      proxies: ["HK AUTO", "SG AUTO", "JP AUTO", "US AUTO"],
+    },
+    {
+      "include-all": true,
+      "exclude-filter": "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置",
+      filter: "(?i)香港|Hong Kong|HK|🇭🇰",
+      name: "HK AUTO",
+      type: "url-test",
+      interval: 300,
+    },
+    {
+      "include-all": true,
+      "exclude-filter": "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置",
+      filter: "(?i)新加坡|Singapore|🇸🇬",
+      name: "SG AUTO",
+      type: "url-test",
+      interval: 300,
+    },
+    {
+      "include-all": true,
+      "exclude-filter": "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置",
+      filter: "(?i)日本|Japan|🇯🇵",
+      name: "JP AUTO",
+      type: "url-test",
+      interval: 300,
+    },
+    {
+      "include-all": true,
+      "exclude-filter": "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置",
+      filter: "(?i)美国|USA|🇺🇸",
+      name: "US AUTO",
+      type: "url-test",
+      interval: 300,
+    },
+    {
+      "include-all": true,
+      "exclude-filter": "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置",
+      proxies: ["AUTO", "HK AUTO", "SG AUTO", "JP AUTO", "US AUTO"],
+      name: "GLOBAL",
+      type: "select",
+    }
+  ];
+
+  if (!config['rule-providers']) {
+    config['rule-providers'] = {};
+  }
+  
+  // 设置rule-providers
+  config["rule-providers"] = Object.assign(config["rule-providers"], {
+    private_domain: {
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs",
+      behavior: "domain",
+      interval: 86400,
+      format: "mrs",
+      type: "http",
+    },
+    cn_domain: {
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs",
+      behavior: "domain",
+      interval: 86400,
+      format: "mrs",
+      type: "http",
+    },
+    github_domain: {
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs",
+      behavior: "domain",
+      interval: 86400,
+      format: "mrs",
+      type: "http",
+    },
+    twitter_domain: {
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.mrs",
+      behavior: "domain",
+      interval: 86400,
+      format: "mrs",
+      type: "http",
+    },
+    youtube_domain: {
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs",
+      behavior: "domain",
+      interval: 86400,
+      format: "mrs",
+      type: "http",
+    },
+    google_domain: {
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs",
+      behavior: "domain",
+      interval: 86400,
+      format: "mrs",
+      type: "http",
+    },
+    telegram_domain: {
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs",
+      behavior: "domain",
+      interval: 86400,
+      format: "mrs",
+      type: "http",
+    },
+    netflix_domain: {
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs",
+      behavior: "domain",
+      interval: 86400,
+      format: "mrs",
+      type: "http",
+    },
+    spotify_domain: {
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.mrs",
+      behavior: "domain",
+      interval: 86400,
+      format: "mrs",
+      type: "http",
+    },
+    "geolocation-!cn": {
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs",
+      behavior: "domain",
+      interval: 86400,
+      format: "mrs",
+      type: "http",
+    },
+    private_ip: {
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs",
+      behavior: "ipcidr",
+      interval: 86400,
+      format: "mrs",
+      type: "http",
+    },
+    cn_ip: {
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs",
+      behavior: "ipcidr",
+      interval: 86400,
+      format: "mrs",
+      type: "http",
+    },
+    google_ip: {
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs",
+      behavior: "ipcidr",
+      interval: 86400,
+      format: "mrs",
+      type: "http",
+    },
+    netflix_ip: {
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs",
+      behavior: "ipcidr",
+      interval: 86400,
+      format: "mrs",
+      type: "http",
+    },
+    twitter_ip: {
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.mrs",
+      behavior: "ipcidr",
+      interval: 86400,
+      format: "mrs",
+      type: "http",
+    },
+    telegram_ip: {
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs",
+      behavior: "ipcidr",
+      interval: 86400,
+      format: "mrs",
+      type: "http",
+    },
+    bing: {
+      url: "https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Bing/Bing.yaml",
+      path: "./ruleset/bing.yaml",
+      behavior: "classical",
+      interval: 86400,
+      format: "yaml",
+      type: "http",
+    },
+    copilot: {
+      url: "https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Copilot/Copilot.yaml",
+      path: "./ruleset/copilot.yaml",
+      behavior: "classical",
+      interval: 86400,
+      format: "yaml",
+      type: "http",
+    },
+    claude: {
+      url: "https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Claude/Claude.yaml",
+      path: "./ruleset/claude.yaml",
+      behavior: "classical",
+      interval: 86400,
+      format: "yaml",
+      type: "http",
+    },
+    bard: {
+      url: "https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BardAI/BardAI.yaml",
+      path: "./ruleset/bard.yaml",
+      behavior: "classical",
+      interval: 86400,
+      format: "yaml",
+      type: "http",
+    },
+    openai: {
+      url: "https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml",
+      path: "./ruleset/openai.yaml",
+      behavior: "classical",
+      interval: 86400,
+      format: "yaml",
+      type: "http",
+    },
+    bytedance: {
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance.mrs",
+      behavior: "domain",
+      interval: 86400,
+      format: "mrs",
+      type: "http",
+    }
+  });
+
+  // 设置规则
+  config["rules"] = [
+    "DOMAIN-SUFFIX,byteoversea.com,DIRECT",
+    "RULE-SET,private_ip,DIRECT,no-resolve",
+    "RULE-SET,bytedance,DIRECT",
+    "RULE-SET,bing,AIGC",
+    "RULE-SET,copilot,AIGC", 
+    "RULE-SET,claude,AIGC",
+    "RULE-SET,bard,AIGC",
+    "RULE-SET,openai,AIGC",
+    "RULE-SET,github_domain,PROXY",
+    "RULE-SET,twitter_domain,PROXY",
+    "RULE-SET,youtube_domain,PROXY",
+    "RULE-SET,google_domain,PROXY",
+    "RULE-SET,telegram_domain,PROXY",
+    "RULE-SET,netflix_domain,PROXY",
+    "RULE-SET,spotify_domain,PROXY",
+    "RULE-SET,cn_domain,DIRECT",
+    "RULE-SET,geolocation-!cn,PROXY",
+    "RULE-SET,google_ip,Google",
+    "RULE-SET,netflix_ip,PROXY",
+    "RULE-SET,telegram_ip,Telegram",
+    "RULE-SET,twitter_ip,PROXY",
+    "RULE-SET,cn_ip,DIRECT",
+    "MATCH,GLOBAL",
+  ];
+
+  return config;
+} 
