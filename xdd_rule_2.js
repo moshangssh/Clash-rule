@@ -234,6 +234,13 @@ function main(config) {
       interval: 86400,
       format: "mrs",
       type: "http",
+    },
+    cursor: {
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cursor.mrs",
+      behavior: "domain",
+      interval: 86400,
+      format: "mrs",
+      type: "http",
     }
   });
 
@@ -242,6 +249,7 @@ function main(config) {
     "DOMAIN-SUFFIX,byteoversea.com,DIRECT",
     "RULE-SET,private_ip,DIRECT,no-resolve",
     "RULE-SET,bytedance,DIRECT",
+    "RULE-SET,cursor,AIGC",
     "RULE-SET,bing,AIGC",
     "RULE-SET,copilot,AIGC", 
     "RULE-SET,claude,AIGC",
