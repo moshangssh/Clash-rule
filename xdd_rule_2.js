@@ -15,9 +15,11 @@ function main(config) {
       interval: 300,
     },
     {
+      "include-all": true,
+      "exclude-filter": "(?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置",
       name: "AIGC",
       type: "select",
-      proxies: ["SG AUTO", "JP AUTO", "US AUTO"],
+      proxies: ["AUTO", "HK AUTO", "SG AUTO", "JP AUTO", "US AUTO"],
     },
     {
       name: "Telegram",
@@ -241,8 +243,8 @@ function main(config) {
       interval: 86400,
       format: "mrs",
       type: "http",
-    }
-  });
+    },
+}),
 
   // 设置规则
   config["rules"] = [
@@ -264,6 +266,7 @@ function main(config) {
     "RULE-SET,spotify_domain,PROXY",
     "RULE-SET,cn_domain,DIRECT",
     "RULE-SET,geolocation-!cn,PROXY",
+    
     "RULE-SET,google_ip,Google",
     "RULE-SET,netflix_ip,PROXY",
     "RULE-SET,telegram_ip,Telegram",
