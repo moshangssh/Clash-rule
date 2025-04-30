@@ -244,10 +244,19 @@ function main(config) {
       format: "mrs",
       type: "http",
     },
-}),
+    fake_ip_filter: {
+      type: "http",
+      behavior: "domain",
+      format: "text",
+      interval: 86400,
+      url: "https://cdn.jsdelivr.net/gh/juewuy/ShellCrash@dev/public/fake_ip_filter.list",
+      path: "./ruleset/fake_ip_filter.list",
+    },
+  }),
 
   // 设置规则
   config["rules"] = [
+    "IP-CIDR,156.225.18.18/32,HK AUTO",
     "DOMAIN-SUFFIX,byteoversea.com,DIRECT",
     "RULE-SET,private_ip,DIRECT,no-resolve",
     "RULE-SET,bytedance,DIRECT",
