@@ -61,7 +61,7 @@ dns:
       - "+.lan"
       - "+.local"
       - "+.market.xiaomi.com"
-      - "ruleset: fake_ip_filter"
+      - 'ruleset:fake_ip_filter'
 
 geodata-mode: true
 geox-url:
