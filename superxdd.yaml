@@ -63,9 +63,9 @@ sniffer:
 
 ### Tunnel配置
 tun:
-  enable: false
+  enable: true
   stack: system
-  device: Ethernet 99
+  device: mihomo
   auto-route: true
   auto-detect-interface: true
   dns-hijack:
