@@ -313,6 +313,7 @@ rules:
   - RULE-SET,direct_non_ip,DIRECT
   - RULE-SET,domestic_ip,DIRECT,no-resolve
   - RULE-SET,china_ip,DIRECT,no-resolve
+  - DOMAIN-SUFFIX,6666623.xyz,DIRECT
 
   ### 特定服务规则
   - RULE-SET,apple_cdn,DIRECT
